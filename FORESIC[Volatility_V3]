@@ -1,0 +1,23 @@
+'VOLATILITY:
+'TO RUN:
+python3 vol.py -h
+'TO know information about os:
+  python3 vol.py -f filelocation/ windows.info
+'TO know information about process_id:
+  python3 vol.py -f filelocation.vmem windows.psscan
+
+    'EXAMPLE: 2688	2732	@WanaDecryptor	0x1ef9ed40	0	-	1	False	2021-01-31 18:24:49.000000 	2021-01-31 18:24:49.000000 	Disabled
+      'Process->@WanaDecryptor	
+     ' process-id->2732
+      'parent_process_id:2688
+
+    'If you drill down on the suspicious PID (vol.py -f infected.vmem --profile=Win7SP1x86 psscan | grep (PIDhere)), find the process used to delete files:
+    python3 vol.py -f BTLO\ Memory\ Analysis\ -\ Ransomware/infected.vmem windows.psscan | grep 2732
+      
+'TO know more about comandline and history:
+             python3 vol.py -f BTLO\ Memory\ Analysis\ -\ Ransomware/infected.vmem windows.cmdline
+  'To find open handle:
+  python3 vol.py -f BTLO\ Memory\ Analysis\ -\ Ransomware/infected.vmem windows.handles --pid 2732
+
+'Resource:
+https://blog.onfvp.com/post/volatility-cheatsheet/
